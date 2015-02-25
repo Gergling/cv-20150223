@@ -1,0 +1,22 @@
+{
+  "name": "cv",
+  "version": "1.0.0",
+  "description": "My CV",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gergling/cv-20150223.git"
+  },
+  "keywords": [
+    "cv"
+  ],
+  "author": "Greg Davies",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gergling/cv-20150223/issues"
+  },
+  "homepage": "https://github.com/Gergling/cv-20150223"
+}
