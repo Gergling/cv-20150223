@@ -1,0 +1,20 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<div data-ng-include="project.descriptionPartial"></div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid project-skills">
+	<div class="row-fluid" data-ng-repeat="skillGroup in project.skills">
+		<div class="span3">{{skillGroup.label}}:</div>
+		<div class="span9">
+			<ul>
+				<li data-ng-hide="skillGroup.list.length">None</li>
+				<li data-ng-repeat="skill in skillGroup.list" data-ng-click="skill.toggle()" data-ng-class="{selected: skill.selected}">
+					<div>{{skill.label}}</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,4 @@
+select, select:focus, input, input:focus {border:0;border-radius:0;outline:none;}
+select {height:45px;margin:0;padding:8px;}
+select option {background-color:inherit;}
+input, input:focus, .input-append input {height:29px;}

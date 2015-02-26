@@ -1,0 +1,9 @@
+/* All stylesheets to be referred to from here. */
+/* This is purely for the purposes of mocking up. The production environment will not pull in stylesheets this way. */
+
+@import url("login.css");
+@import url("button.css");
+@import url("font.css");
+@import url("colour.css");
+@import url("layout.css");
+@import url("input.css");

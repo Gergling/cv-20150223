@@ -1,0 +1,24 @@
+<div class="row background-white" data-ng-controller="section-jobs.controller.index">
+	<div class="span12">
+		<p>This is my employment history in reverse chronological order, grouping projects by job.</p>
+		<ul class="job-listing">
+			<!--<li data-ng-repeat="item in jobs.order.date | orderBy:start">-->
+			<li data-ng-repeat="item in jobs.order.date">
+				<h4>{{item.label}} {{item.period}}</h4>
+				<div data-ng-include="item.descriptionPartial"></div>
+				<ul class="job-projects">
+					<li data-ng-repeat="project in item.projects">
+						<div class="container-fluid">
+							<div class="row-fluid">
+								<div class="span12">
+									<h5>{{project.label}}</h5>
+								</div>
+							</div>
+						</div>
+						<div data-ng-include="'module/section-projects/partial/project.html'">Loading Project Information...</div>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>

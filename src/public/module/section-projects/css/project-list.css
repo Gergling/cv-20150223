@@ -1,0 +1,18 @@
+ul.project-list {}
+ul.project-list > li {
+	background-color: #eee;
+	margin: 10px 0;
+	list-style: none;
+	padding: 20px;
+}
+
+.project-skills ul > li {
+	float:left;
+	padding:3px 6px;
+	list-style:none;
+	margin: 0 5px;
+}
+ul.project-list > li .project-skills ul > li {
+	background-color: white;
+}
+ul.project-list > li .project-skills ul > li.selected {background-color:#aef;}

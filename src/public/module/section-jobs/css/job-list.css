@@ -1,0 +1,19 @@
+ul.job-listing li {
+	list-style:none;
+	background-color: #eee;
+}
+
+ul.job-listing > li {
+	padding: 1px 15px 15px 15px;
+	margin:20px 0;
+}
+ul.job-listing > li ul.job-projects > li {
+	background-color:white;
+	padding:3px;
+	margin:10px 0;
+}
+
+ul.job-listing > li ul.job-projects > li .project-skills ul > li {
+	background-color: #eee;
+}
+ul.job-listing > li ul.job-projects > li .project-skills ul > li.selected {background-color:#aef;}

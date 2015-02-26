@@ -1,0 +1,58 @@
+.rounded-30 {
+	border-radius: 30px;
+}
+[class^="page-"] {
+	width:940px;
+}
+
+.subpanel {
+	background-color:white;
+	border-radius:10px;
+	padding:20px;
+	margin:0 10px;
+}
+.logo {
+	background: transparent url(../../../media/images/logo.gif) 0 0 no-repeat;
+	display:block;
+	width:280px;
+	height:57px;
+}
+.dashboard-panel-row {
+	margin-top:25px;
+	width:980px;
+}
+.dashboard-panel-row .panel {
+	width:320px;
+	height:360px;
+	color:white;
+	margin-left:0;
+	margin-right:10px;
+}
+.dashboard-panel-row .panel:last-child {
+	margin-right:0;
+}
+.dashboard-panel-row .panel.welcome {
+	background: transparent url(../../../media/images/bg-panel-home.jpg) 0 0 no-repeat;
+	padding:20px;
+}
+.dashboard-panel-row .panel.newaccount {
+	position:relative;
+	background:#81bc00 url(../../../media/images/bg-icn-account.gif) right bottom no-repeat;
+}
+.dashboard-panel-row .panel.newaccount h1 {
+	line-height:0.8em;
+}
+.dashboard-panel-row .panel.newaccount .overlay {
+	position:absolute;
+	width:100%;
+	height:inherit;
+	background-color:black;
+	opacity:0;
+}
+.dashboard-panel-row .panel.newaccount .overlay:hover {
+	opacity:0.1;
+}
+.dashboard-panel-row .panel.search {
+	padding:20px;
+	background: #0069b4 url(../../../media/images/bg-icn-search.gif) right bottom no-repeat;
+}

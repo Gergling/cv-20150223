@@ -1,0 +1,20 @@
+.page-login.background {
+	width: 966px;
+	height: 705px;
+	border: solid 1px black;
+}
+
+.panel-login {
+	width: 283px;
+	height:373px;
+}
+
+.panel-login p {
+	line-height:10px;
+}
+
+.panel-login .logo {
+	background-color:white;
+	height:82px;
+	margin-bottom:27px;
+}

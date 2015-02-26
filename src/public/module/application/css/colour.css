@@ -1,0 +1,22 @@
+.colour-green {color:#8c0;}
+.colour-lightgrey {color:#bbb;}
+
+.gradient-vertical-darkgreen-darkening {
+	background-image:linear-gradient(#007700, #003300);
+}
+
+.background-black {
+	background-color:#000;
+}
+.background-green {
+	background-color:#8c0;
+}
+.background-darkgreen {
+	background-color:#050;
+}
+.background-white {
+	background-color:#fff;
+}
+.background-grey {
+	background-color:#bbb;
+}

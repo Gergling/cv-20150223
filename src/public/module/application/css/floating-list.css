@@ -1,0 +1,10 @@
+ul.floating-list li {
+	width:200px;
+	background-color:#eee;
+	height:20px;
+	margin:8px;
+	float:left;
+	list-style:none;
+	padding:20px;
+}
+ul.floating-list li.selected {background-color:#aef;}

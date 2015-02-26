@@ -1,0 +1,17 @@
+<div class="row background-white" data-ng-controller="section-projects.controller.index">
+	<div class="span12">
+		<p>I have listed all my projects here independently of employment history to include personal projects.</p>
+		<ul class="project-list">
+			<li data-ng-repeat="project in projects.list">
+				<div class="container-fluid">
+					<div class="row-fluid">
+						<div class="span12">
+							<h4>{{project.label}}</h4>
+						</div>
+					</div>
+				</div>
+				<div data-ng-include="'module/section-projects/partial/project.html'">Loading Project Information...</div>
+			</li>
+		</ul>
+	</div>
+</div>

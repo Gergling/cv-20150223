@@ -1,0 +1,19 @@
+<div class="well">
+	<div>=== CV ===</div>
+	<div data-ng-repeat="job in jobs.order.date">
+		<div>== {{job.label}} ({{job.period}}) ==</div>
+		<div data-ng-include="job.descriptionPartial"></div>
+		<div data-ng-repeat="project in job.projects">
+			<div>= {{project.label}} =</div>
+			<div data-ng-include="project.descriptionPartial"></div>
+			Skills used: 
+			<span data-ng-repeat="skillGroup in project.skills">
+				<span style="display:none;">{{skillGroup.label}}</span>
+				<span data-ng-repeat="skill in skillGroup.list">{{skill.label}}<span data-ng-hide="$last">,
+				</span></span><span data-ng-hide="$last">,</span>
+			</span>
+			<br/>
+			<br/>
+		</div>
+	</div>
+</div>
