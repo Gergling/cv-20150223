@@ -7,6 +7,7 @@ module.exports = function (grunt) {
         //exampleData = grunt.file.expand('./examples/data/src/*.js'),
         paths = {
             css: grunt.file.expand([
+                'src/public/vendor/bootstrap/dist/css/bootstrap.css',
                 'src/public/module/**/*.css'
             ]),
             js: grunt.file.expand([
