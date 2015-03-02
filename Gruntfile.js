@@ -55,29 +55,26 @@ module.exports = function (grunt) {
                 ],
                 dest: 'src/<%= pkg.version %>/lightbox/buynow.js'
             }
-        },
+        },*/
         copy: {
-            base: {
+            dist: {
                 files: [
                     {
                         expand: true,
-                        cwd: 'src/<%= pkg.version %>/lightbox/base/partial/',
+                        cwd: 'src/public/vendor/bootstrap/dist/fonts/',
                         src: ['**'],
-                        dest: 'dist/<%= pkg.version %>/lightbox/base/partial/'
+                        dest: 'dist/fonts/'
                     }
                 ]
             },
-        },*/
+        },
         cssmin: {
-            demo: {
+            dist: {
                 options: {
                     banner: banner
                 },
                 files: {
-                    'build/sku/dist/style.min.css': 'build/sku/src/*.css',
-                    'build/range/dist/style.min.css': 'build/range/src/*.css',
-                    'build/tile/dist/style.min.css': 'build/tile/src/*.css',
-                    'build/facebook/dist/style.min.css': 'build/facebook/src/*.css'
+                    'dist/css/min.css': paths.css
                 }
             }
         },
@@ -109,11 +106,15 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     data: {
-                        // Dist paths
+                        prefix: 'dist/',
+                        paths: {
+                            css: [ 'dist/css/min.css' ],
+                            js: [ 'dist/min.js' ]
+                        }
                     }
                 },
                 files: {
-                    // Dist index file in dist based on template, pulling in minified code
+                    'dist/index.html': ['src/template/index.html.tpl']
                 }
             }
         },
@@ -123,10 +124,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'dist/min.js': [
-                        'src/**/module.js',
-                        'src/**/*.js'
-                    ]
+                    'dist/min.js': paths.js
                 }
             }
         },
@@ -158,22 +156,18 @@ module.exports = function (grunt) {
 
     // Tasks: template, dist
     // Default task
-    grunt.registerTask('default', [ 'build' ]);
+    grunt.registerTask('default', [ 'template:dev' ]);
 
-    grunt.registerTask('gruntfile.lint', ['jslint:gruntfile']);
-
-    grunt.registerTask('prebuild', [
+    grunt.registerTask('install', [
         'bower',
-        'gruntfile.lint'
+        'template:dev'
     ]);
 
-    grunt.registerTask('build', [
-        'prebuild',
-        // 'jasmine',
-        'jslint',
-        'concat',
+    grunt.registerTask('dist', [
+        //'jslint',
+        'copy:dist',
         'uglify',
         'cssmin',
-        'copy'
+        'template:dist'
     ]);
 };
