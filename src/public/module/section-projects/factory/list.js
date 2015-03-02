@@ -1,4 +1,4 @@
-qh.getModule('section-projects').factory("section-projects.factory.list", ["$rootScope", "section-skills.factory.list", function ($rootScope, skills) {
+angular.module('section-projects').factory("section-projects.factory.list", ["$rootScope", "section-skills.factory.list", function ($rootScope, skills) {
 	var projects = {};
 	projects.list = {
 		"azura-pps":{

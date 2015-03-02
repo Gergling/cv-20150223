@@ -1,4 +1,4 @@
-qh.getModule('application').factory("application.factory.navigation", function ($rootScope) {
+angular.module('application').factory("application.factory.navigation", function ($rootScope) {
 	// All factories will go into a folder of factories in the module.
 	var navigation = (function() {
 		var nav = {};

@@ -1,8 +1,1 @@
-qh.setModule("section-jobs", {
-	factory: [
-		"list"
-	],
-	controller: [
-		"index"
-	],
-});
+angular.module("section-jobs", [ ]);

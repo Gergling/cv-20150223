@@ -1,4 +1,4 @@
-qh.getModule('application').directive('cvDownload', function() {
+angular.module('application').directive('cvDownload', function() {
 	return {
 		restrict: 'A',
 		templateUrl: "module/application/partial/download-sample.html",

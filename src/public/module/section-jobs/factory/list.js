@@ -1,4 +1,4 @@
-qh.getModule('section-jobs').factory("section-jobs.factory.list", ["$rootScope", "section-projects.factory.list", function ($rootScope, projects) {
+angular.module('section-jobs').factory("section-jobs.factory.list", ["$rootScope", "section-projects.factory.list", function ($rootScope, projects) {
 	// All factories will go into a folder of factories in the module.
 	var jobs = {};
 	jobs.list = {

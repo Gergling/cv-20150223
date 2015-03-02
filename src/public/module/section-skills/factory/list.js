@@ -1,4 +1,4 @@
-qh.getModule('section-skills').factory("section-skills.factory.list", function ($rootScope) {
+angular.module('section-skills').factory("section-skills.factory.list", function ($rootScope) {
 	// All factories will go into a folder of factories in the module.
 	var skills = {};
 	skills.list = {

@@ -1,8 +1,1 @@
-qh.setModule("section-skills", {
-	factory: [
-		"list"
-	],
-	controller: [
-		"index"
-	],
-});
+angular.module("section-skills", [ ]);
