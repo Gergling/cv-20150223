@@ -6,7 +6,6 @@ angular.module('application').controller("application.controller.index", [
     "application.factory.navigation",
 
     function($scope, $location, $routeConfig, navigation) {
-        console.log(navigation);
         $scope.navigation = navigation;
         $scope.$on('$routeChangeSuccess', function (scope, current, previous) {
             navigation.setActive(current.params.module);
