@@ -189,7 +189,7 @@ angular.module('section-projects').factory("section-projects.factory.list", ["$r
 						} break;
 					}
 				} else {
-					throw "Projects: No skill named '"+skillName+"'.";
+					//throw "Projects: No skill named '"+skillName+"'.";
 				}
 			});
 			if (project.issueManagement) {project.skills["0_issue-management"].list.push({label:project.issueManagement});}

@@ -2,8 +2,8 @@ angular.module('section-skills').factory("section-skills.factory.list", function
 	// All factories will go into a folder of factories in the module.
 	var skills = {};
 	skills.list = {
-		php5: {label: "PHP5", typeName: "language", parent:"lamp"},
-		zf2: {label: "Zend Framework 2 (ZF2)", typeName: "framework", language:"php5"},
+		//php5: {label: "PHP5", typeName: "language", parent:"lamp"},
+		//zf2: {label: "Zend Framework 2 (ZF2)", typeName: "framework", language:"php5"},
 		javascript: {label: "Javascript", typeName: "language"},
 		angularjs: {label: "AngularJS", typeName: "framework", language:"javascript"},
 		requirejs: {label: "RequireJS", typeName: "framework", language:"javascript"},
