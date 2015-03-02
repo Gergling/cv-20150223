@@ -58,7 +58,7 @@ angular.module('section-skills').factory("section-skills.factory.list", function
 			skill.type = skills.types[skill.typeName];
 			if (!skill.typeName) {throw "Skill '"+skill.name+"' not given a type.";}
 			if (iconMap[skill.typeName]) {
-				skill.typeIcon = iconMap[skill.typeName];
+				skill.typeIcon = "glyphicon glyph" + iconMap[skill.typeName];
 			}
 			skill.toggle = function() {
 				skill.selected = !skill.selected;

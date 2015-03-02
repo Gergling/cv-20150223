@@ -7,8 +7,8 @@
 </div>
 <div class="container-fluid project-skills">
 	<div class="row-fluid" data-ng-repeat="skillGroup in project.skills">
-		<div class="span3">{{skillGroup.label}}:</div>
-		<div class="span9">
+		<div class="col-xs-3">{{skillGroup.label}}:</div>
+		<div class="col-xs-9">
 			<ul>
 				<li data-ng-hide="skillGroup.list.length">None</li>
 				<li data-ng-repeat="skill in skillGroup.list" data-ng-click="skill.toggle()" data-ng-class="{selected: skill.selected}">
