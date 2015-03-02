@@ -1,6 +1,6 @@
 <!-- Generated <%- grunt.template.today("yyyy-mm-dd HH:MM:ss") %> -->
 <!doctype html>
-<html lang="en">
+<html lang="en" data-ng-app="application">
 <head>
     <title>Greg Davies CV</title>
     <meta charset="utf-8">
@@ -10,18 +10,18 @@
 
     <%
         paths.css.forEach(function (path) {
-            %><link rel="stylesheet" type="text/css" href="<%- prefix + path %>"><%- "\n" %><%
+            %><%- "\t" %><link rel="stylesheet" type="text/css" href="<%- path.replace(prefix, "") %>"><%- "\n" %><%
         });
     %>
 
     <%
         paths.js.forEach(function (path) {
-            %><script src='<%- prefix + path %>'></script><%- "\n" %><%
+            %><%- "\t" %><script src='<%- path.replace(prefix, "") %>'></script><%- "\n" %><%
         });
     %>
 
 </head>
 <body data-ng-controller="application.controller.index">
-    <div data-ng-view></div>
+    <div data-ng-include="'module/application/partial/index.html'">(Loading...)</div>
 </body>
 </html>
