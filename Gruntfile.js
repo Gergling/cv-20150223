@@ -45,9 +45,12 @@ module.exports = function (grunt) {
         },
         jslint: {
             client: {
-                src: [ 'src/**/*.js' ],
+                src: [ 'src/public/module/**/*.js' ],
                 directives: {
-                    browser: true
+                    browser: true,
+                    predef: [
+                        "angular"
+                    ]
                 }
             },
             grunt: {
@@ -120,7 +123,7 @@ module.exports = function (grunt) {
         watch: {
             bootstrap: {
                 files: '<%= jslint.client.src %>',
-                tasks: [ 'jslint:client' ]
+                tasks: [ 'template:dev', 'jslint:client' ]
             },
             bower: {
                 files: [ 'bower.json' ],
