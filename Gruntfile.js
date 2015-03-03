@@ -44,17 +44,41 @@ module.exports = function (grunt) {
             }
         },
         jslint: {
-            base: {
-                src: [
-                    'src/**/*.js',
-                ],
+            client: {
+                src: [ 'src/**/*.js' ],
                 directives: {
                     browser: true
-                }/*,
-                options: {
-                    failOnError: true
-                }*/
+                }
             },
+            grunt: {
+                src: [ 'Gruntfile.js' ],
+                directives: {
+                    predef: [
+                        "module",
+                        "require"
+                    ]
+                }
+            }
+        },
+        ngtemplates: {
+            application: {
+                cwd:    'src/public',
+                src:    'module/**/*.html',
+                dest:   'dist/min.js',
+                options:  {
+                    append: true,
+                    htmlmin: {
+                        collapseBooleanAttributes:      true,
+                        collapseWhitespace:             true,
+                        removeAttributeQuotes:          true,
+                        removeComments:                 true, // Only if you don't use comment directives! 
+                        removeEmptyAttributes:          true,
+                        removeRedundantAttributes:      true,
+                        removeScriptTypeAttributes:     true,
+                        removeStyleLinkTypeAttributes:  true
+                    }
+                }
+            }
         },
         template: {
             dev: {
@@ -95,16 +119,16 @@ module.exports = function (grunt) {
         },
         watch: {
             bootstrap: {
-                files: '<%= jslint.bootstrap.src %>',
-                tasks: [ 'jasmine:bootstrap', 'jslint:bootstrap', 'concat:bootstrap' ]
+                files: '<%= jslint.client.src %>',
+                tasks: [ 'jslint:client' ]
             },
             bower: {
                 files: [ 'bower.json' ],
                 tasks: [ 'bower' ]
             },
             gruntfile: {
-                files: '<%= jslint.gruntfile.src %>',
-                tasks: [ 'jslint:gruntfile' ]
+                files: '<%= jslint.grunt.src %>',
+                tasks: [ 'jslint:grunt' ]
             }
         }
     });
@@ -119,19 +143,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-template');
 
-    // Tasks: template, dist
-    // Default task
+    // By default, generate dev template
     grunt.registerTask('default', [ 'template:dev' ]);
 
-    grunt.registerTask('install', [
-        'bower',
-        'template:dev'
-    ]);
-
+    // Distribution code generation
     grunt.registerTask('dist', [
         //'jslint',
         'copy:dist',
         'uglify',
+        'ngtemplates:application',
         'cssmin',
         'template:dist'
     ]);
