@@ -1,3 +1,9 @@
-angular.module('section-jobs').controller("section-jobs.controller.index", ["$rootScope", "section-jobs.factory.list", function($scope, jobs) {
-	$scope.jobs = jobs;
-}]);
+angular.module('section-jobs').controller("section-jobs.controller.index", [
+
+    "$scope",
+    "section-jobs.service.list",
+
+    function($scope, jobs) {
+        $scope.jobs = jobs;
+    }
+]);
