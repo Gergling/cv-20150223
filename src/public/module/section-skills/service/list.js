@@ -1,6 +1,6 @@
 angular.module('section-skills').service("section-skills.service.list", [
 
-    function (skillService) {
+    function () {
 
         "use strict";
 
@@ -20,8 +20,6 @@ angular.module('section-skills').service("section-skills.service.list", [
             express: {label: "Express", typeName: "framework", parent: "mean"},
             mean: {label: "MEAN Stack", typeName: "stack"},
             nodejs: {label: "Node JS", typeName: "language", parent:"mean"},
-            //php5: {label: "PHP5", typeName: "language", parent:"lamp"},
-            //zf2: {label: "Zend Framework 2 (ZF2)", typeName: "framework", language:"php5"},
             javascript: {label: "Javascript", typeName: "language"},
             angularjs: {label: "AngularJS", typeName: "framework", language: "javascript", parent: "mean"},
             requirejs: {label: "RequireJS", typeName: "framework", language: "javascript"},
@@ -31,9 +29,7 @@ angular.module('section-skills').service("section-skills.service.list", [
             chartjs: {label: "DevExpress ChartJS", url: "http://chartjs.devexpress.com/", typeName: "framework", language: "javascript"},
             html: {label: "HTML/HTML5", typeName: "language"},
             css: {label: "CSS3", typeName: "language"},
-            //lamp: {label: "LAMP Stack", typeName: "stack"},
             ubuntu: {label: "Linux (Ubuntu)", typeName: "os", parent: "lamp"},
-            //apache: {label: "Apache", typeName: "webserver", parent:"lamp"},
             mysql: {label: "MySQL", typeName: "language", parent: "lamp"},
             phpmyadmin: {label: "PHPMyAdmin", typeName: "tool", language: "mysql"},
             workbench: {label: "Workbench", typeName: "tool", language: "mysql"},
