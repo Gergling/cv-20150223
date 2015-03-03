@@ -4,7 +4,6 @@ angular.module('section-skills').service("section-skills.service.list", [
 
         "use strict";
 
-        // All factories will go into a folder of factories in the module.
         var scope = this,
             iconMap = {
                 "issue-management": "icon-road",
