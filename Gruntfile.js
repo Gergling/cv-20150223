@@ -17,44 +17,10 @@ module.exports = function (grunt) {
                 'src/public/module/*/module.js',
                 'src/public/module/**/*.js'
             ])
-        },
-        path = require("path");
-
-    // Fix to bootstrap's odd bootstrap.css.map 404.
-    //grunt.file.write('./vendor/bootstrap/css/bootstrap.css.map', "");
+        };
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        bower: {
-            install: {
-                options: {
-                    targetDir: './src/public/vendor',
-                    verbose: true,
-                    layout: function (type, component, source) {
-                        // Make sure bootstrap CSS and fonts appear in correct
-                        // directories relative to each other.
-                        if (component === 'bootstrap') {
-                            if (source.match('bootstrap.css')) {
-                                return require('path').join(component, 'css');
-                            }
-                            if (source.match('glyphicons-halflings-regular')) {
-                                return require('path').join(component, 'fonts');
-                            }
-                        }
-                        return component;
-                    }
-                }
-            }
-        },
-        /*concat: {
-            bootstrap: {
-                src: [
-                    'src/<%= pkg.version %>/lightbox/base/buynow-prepend/*.js',
-                    'src/<%= pkg.version %>/lightbox/bootstrap.js'
-                ],
-                dest: 'src/<%= pkg.version %>/lightbox/buynow.js'
-            }
-        },*/
         copy: {
             dist: {
                 files: [
@@ -65,7 +31,7 @@ module.exports = function (grunt) {
                         dest: 'dist/fonts/'
                     }
                 ]
-            },
+            }
         },
         cssmin: {
             dist: {
