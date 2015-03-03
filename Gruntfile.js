@@ -4,7 +4,6 @@ module.exports = function (grunt) {
 
     var banner = '/* Greg Davies CV */\n'
             + '/* <%= grunt.template.today("yyyy-mm-dd") %> */\n',
-        //exampleData = grunt.file.expand('./examples/data/src/*.js'),
         paths = {
             css: grunt.file.expand([
                 'src/public/vendor/bootstrap/dist/css/bootstrap.css',
