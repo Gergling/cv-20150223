@@ -22,6 +22,16 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         copy: {
+            deploy: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'C:/Users/G/Google Drive/Careers/CV/Public/Web Developer/20150223/dist',
+                        src: ['**'],
+                        dest: 'dist/'
+                    }
+                ]
+            },
             dist: {
                 files: [
                     {
