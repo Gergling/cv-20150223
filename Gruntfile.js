@@ -26,9 +26,9 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: 'C:/Users/G/Google Drive/Careers/CV/Public/Web Developer/20150223/dist',
+                        cwd: 'dist/',
                         src: ['**'],
-                        dest: 'dist/'
+                        dest: 'C:/Users/G/Google Drive/Careers/CV/Public/Web Developer/20150223/dist'
                     }
                 ]
             },
