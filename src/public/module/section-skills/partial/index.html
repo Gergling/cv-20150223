@@ -3,7 +3,7 @@
 		<p>You can select any skills on this page so that they will highlight against specific jobs and projects.</p>
 		<input type="search" data-ng-model="q" placeholder="Filter skills..." />
 		<ul class="floating-list">
-			<li data-ng-repeat="item in skills.order.alphabetical | filter:q" data-ng-click="item.toggle()" data-ng-class="{selected: item.selected}">
+			<li data-ng-repeat="item in skills.get() | filter:q" data-ng-click="item.toggle()" data-ng-class="{selected: item.selected}">
 				<div><span class="{{item.typeIcon}}"></span> {{item.label}}</div>
 			</li>
 		</ul>
