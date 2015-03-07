@@ -1,7 +1,7 @@
 angular.module('section-projects').service("section-projects.service.list", [
 
     "$rootScope",
-    "section-skills.factory.list",
+    "section-skills.service.list",
 
     function ($rootScope, skills) {
         var projects = this;
@@ -137,6 +137,7 @@ angular.module('section-projects').service("section-projects.service.list", [
                     "angularjs",
                     "requirejs",
                     "bootstrap",
+                    "grunt"
                 ],
             },
             "personal-smallcity":{
@@ -167,21 +168,58 @@ angular.module('section-projects').service("section-projects.service.list", [
                     "git-issues",
                 ],
             },
+            "fusepump-platform":{
+                label: "Platform",
+                company: "fusepump",
+                skillNames: [
+                    "jasmine",
+                    "grunt",
+                    "nodejs",
+                    "angularjs",
+                    "jQuery",
+                    "git",
+                    "jira",
+                ],
+            },
+            "fusepump-digital":{
+                label: "Nestle Lightboxes",
+                company: "fusepump",
+                skillNames: [
+                    "jasmine",
+                    "grunt",
+                    "nodejs",
+                    "angularjs",
+                    "jQuery",
+                    "git",
+                    "jira",
+                ],
+            },
         };
         $.each(projects.list, function(projectName, project) {
+            var categories = [ "ims", "srcControl" ],
+                categorySkills = { other: { label: "Other Skills", list: [ ] } };
+
             project.name = projectName;
-            project.descriptionPartial = "module/section-projects/partial/project-descriptions/"+project.name+".html";
-            project.skills = {};
-            project.skills["0_issue-management"] = {label: skills.types["issue-management"].label, list:[]};
-            project.skills["0_subversion"] = {label: skills.types["subversion"].label, list:[]};
+            project.descriptionPartial = "module/section-projects/partial/project-descriptions/" + project.name + ".html";
+            project.skills = [ ];
+            categories.forEach(function (typeName) {
+                categorySkills[typeName] = { label: skills.types(typeName).label, list: [ ] };
+                //project.skills.push({label: skills.types(typeName).label, list: [ ]});
+            });
 
             angular.forEach(project.skillNames, function(skillName) {
-                var skill = skills.list[skillName];
+                var skill = skills.get(skillName);
                 if (skill) {
                     //if (!project.skills["0_issue-management"]) {project.skills["0_issue-management"] = {label: skills.types["issue-management"].label, list:[]};}
                     //if (!project.skills["0_subversion"]) {project.skills["0_subversion"] = {label: skills.types["subversion"].label, list:[]};}
 
-                    switch(skill.typeName) {
+                    if (categories.indexOf(skill.typeName) > -1) {
+                        categorySkills[skill.typeName].list.push(skill);
+                    } else {
+                        categorySkills.other.list.push(skill);
+                        //project.skills.push({label:"Other Skills", list:[]};})
+                    }
+                    /*switch(skill.typeName) {
                         case "subversion": case "issue-management": {
                             var ps = project.skills["0_"+skill.typeName];
                             ps.label = skill.type.label;
@@ -191,13 +229,17 @@ angular.module('section-projects').service("section-projects.service.list", [
                             if (!project.skills.other) {project.skills.other = {label:"Other Skills", list:[]};}
                             project.skills.other.list.push(skill);
                         } break;
-                    }
+                    }*/
                 } else {
                     //throw "Projects: No skill named '"+skillName+"'.";
                 }
             });
-            if (project.issueManagement) {project.skills["0_issue-management"].list.push({label:project.issueManagement});}
-            if (project.subversion) {project.skills["0_subversion"].list.push({label:project.subversion});}
+
+            categories.concat([ "other" ]).forEach(function (category) {
+                project.skills.push(categorySkills[category]);
+            });
+            //if (project.issueManagement) {project.skills["0_issue-management"].list.push({label:project.issueManagement});}
+            //if (project.subversion) {project.skills["0_subversion"].list.push({label:project.subversion});}
         });
     }
 ]);
