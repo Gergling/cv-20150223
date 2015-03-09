@@ -204,42 +204,22 @@ angular.module('section-projects').service("section-projects.service.list", [
             project.skills = [ ];
             categories.forEach(function (typeName) {
                 categorySkills[typeName] = { label: skills.types(typeName).label, list: [ ] };
-                //project.skills.push({label: skills.types(typeName).label, list: [ ]});
             });
 
             angular.forEach(project.skillNames, function(skillName) {
                 var skill = skills.get(skillName);
                 if (skill) {
-                    //if (!project.skills["0_issue-management"]) {project.skills["0_issue-management"] = {label: skills.types["issue-management"].label, list:[]};}
-                    //if (!project.skills["0_subversion"]) {project.skills["0_subversion"] = {label: skills.types["subversion"].label, list:[]};}
-
                     if (categories.indexOf(skill.typeName) > -1) {
                         categorySkills[skill.typeName].list.push(skill);
                     } else {
                         categorySkills.other.list.push(skill);
-                        //project.skills.push({label:"Other Skills", list:[]};})
                     }
-                    /*switch(skill.typeName) {
-                        case "subversion": case "issue-management": {
-                            var ps = project.skills["0_"+skill.typeName];
-                            ps.label = skill.type.label;
-                            ps.list.push(skill);
-                        } break;
-                        default: {
-                            if (!project.skills.other) {project.skills.other = {label:"Other Skills", list:[]};}
-                            project.skills.other.list.push(skill);
-                        } break;
-                    }*/
-                } else {
-                    //throw "Projects: No skill named '"+skillName+"'.";
                 }
             });
 
             categories.concat([ "other" ]).forEach(function (category) {
                 project.skills.push(categorySkills[category]);
             });
-            //if (project.issueManagement) {project.skills["0_issue-management"].list.push({label:project.issueManagement});}
-            //if (project.subversion) {project.skills["0_subversion"].list.push({label:project.subversion});}
         });
     }
 ]);
