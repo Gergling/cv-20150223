@@ -7,15 +7,14 @@ angular.module('section-skills').service("section-skills.service.list", [
 
         "use strict";
 
-        var scope = this,
-            glyphiconMap = {
+        var /*glyphiconMap = {
                 "issue-management": "road",
                 "subversion": "random",
                 "text-editor": "edit",
                 "language": "lamp",
                 "framework": "gift",
                 "tool": "wrench"
-            },
+            },*/
             skills = [
                 sf.stack("mean", "MEAN Stack"),
 
@@ -56,7 +55,7 @@ angular.module('section-skills').service("section-skills.service.list", [
                 sf.ims("github", "GIT Hub", { url: "https://github.com/Gergling" }),
                 sf.ims("lotus-notes", "Lotus Notes"),
                 sf.ims("jira", "JIRA")
-            ],
+            ]/*,
             types = {
                 "ims": {label: "Issue Management"},
                 srcControl: {label: "Source Control"},
@@ -66,15 +65,15 @@ angular.module('section-skills').service("section-skills.service.list", [
                 webserver: {label: "Web Server"},
                 os: {label: "Operating System"},
                 framework: {label: "Framework"}
-            };
+            }*/;
 
         skills.forEach(function (skill) {
-            skill.typeIcon = "icon-cog";
-            skill.type = types[skill.typeName];
-            if (!skill.typeName) {throw "Skill '" + skill.name + "' not given a type."; }
-            if (glyphiconMap[skill.typeName]) {
+            //skill.typeIcon = "icon-cog";
+            //skill.type = types[skill.typeName];
+            //if (!skill.typeName) {throw "Skill '" + skill.name + "' not given a type."; }
+            /*if (glyphiconMap[skill.typeName]) {
                 skill.typeIcon = "glyphicon glyphicon-" + glyphiconMap[skill.typeName];
-            }
+            }*/
         });
 
         this.types = function (name) {

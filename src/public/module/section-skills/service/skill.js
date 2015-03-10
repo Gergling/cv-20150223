@@ -1,14 +1,15 @@
 angular.module('section-skills').service("section-skills.service.skill", [
 
     "$filter",
+    "section-skills.service.category",
 
-    function ($filter) {
+    function ($filter, category) {
 
         "use strict";
 
         var scope = this,
 
-            category = function (name, label, glyphicon, hasLanguage) {
+            /*category = function (name, label, glyphicon, hasLanguage) {
                 var category = { };
                 category.name = name;
                 category.label = label;
@@ -27,7 +28,7 @@ angular.module('section-skills').service("section-skills.service.skill", [
                 category("stack", "Stack"),
                 category("tool", "Tool", "wrench"),
                 category("webserver", "Webserver"),
-            ],
+            ],*/
 
             Skill = function () {
                 this.toggle = function () {
@@ -40,18 +41,13 @@ angular.module('section-skills').service("section-skills.service.skill", [
                 obj = obj || { };
                 skill.name = name;
                 skill.label = label;
-                skill.category = (function () {
-                    var cat = $filter('filter')(categories, { name: typeName })[0];
-                    if (!cat) {
-                        throw new Error("section-skills.service.skill: No category '" + typeName + "'");
-                    }
-                    return cat;
-                }());
+                skill.category = category.get(typeName);
+                // Todo: remove
                 skill.typeName = typeName;
                 return angular.extend(skill, presets, obj);
             };
 
-        categories.forEach(function (cat) {
+        category.get().forEach(function (cat) {
             var fncName = cat.name,
                 fnc = function (name, label, obj) {
                     return create(name, label, fncName, obj);

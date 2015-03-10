@@ -1,9 +1,8 @@
 angular.module('section-projects').service("section-projects.service.list", [
 
-    "$rootScope",
     "section-skills.service.list",
 
-    function ($rootScope, skills) {
+    function (skills) {
         var projects = this;
         projects.list = {
             "azura-pps":{
@@ -195,25 +194,29 @@ angular.module('section-projects').service("section-projects.service.list", [
                 ],
             },
         };
-        $.each(projects.list, function(projectName, project) {
+        angular.forEach(projects.list, function(project, projectName) {
             var categories = [ "ims", "srcControl" ],
                 categorySkills = { other: { label: "Other Skills", list: [ ] } };
 
             project.name = projectName;
             project.descriptionPartial = "module/section-projects/partial/project-descriptions/" + project.name + ".html";
             project.skills = [ ];
-            categories.forEach(function (typeName) {
+            /*categories.forEach(function (typeName) {
                 categorySkills[typeName] = { label: skills.types(typeName).label, list: [ ] };
-            });
+            });*/
 
             angular.forEach(project.skillNames, function(skillName) {
-                var skill = skills.get(skillName);
+                var skill = skills.get(skillName),
+                    categoryName = "other";
+
                 if (skill) {
-                    if (categories.indexOf(skill.typeName) > -1) {
-                        categorySkills[skill.typeName].list.push(skill);
-                    } else {
-                        categorySkills.other.list.push(skill);
+                    if (categories.indexOf(skill.category.name) > -1) {categoryName = skill.category.name; }
+
+                    if (!categorySkills[categoryName]) {
+                        categorySkills[categoryName] = angular.extend(skill.category, { list: [ ] });
                     }
+
+                    categorySkills[categoryName].list.push(skill);
                 }
             });
 
