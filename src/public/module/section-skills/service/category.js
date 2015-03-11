@@ -6,15 +6,13 @@ angular.module('section-skills').service("section-skills.service.category", [
 
         "use strict";
 
-        var scope = this,
-
-            category = function (name, label, glyphicon, hasLanguage) {
-                var category = { };
-                category.name = name;
-                category.label = label;
-                category.glyphicon = glyphicon || "cog";
-                category.hasLanguage = hasLanguage || false;
-                return category;
+        var category = function (name, label, glyphicon, hasLanguage) {
+                var cat = { };
+                cat.name = name;
+                cat.label = label;
+                cat.glyphicon = glyphicon || "cog";
+                cat.hasLanguage = hasLanguage || false;
+                return cat;
             },
             categories = [
                 category("framework", "Framework", "gift", true),
@@ -26,7 +24,7 @@ angular.module('section-skills').service("section-skills.service.category", [
                 category("srcControl", "Source Control", "road"),
                 category("stack", "Stack"),
                 category("tool", "Tool", "wrench"),
-                category("webserver", "Webserver"),
+                category("webserver", "Webserver")
             ];
 
         this.get = function (name) {

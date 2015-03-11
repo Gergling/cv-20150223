@@ -4,9 +4,13 @@ angular.module('section-projects').service("section-projects.service.list", [
     "section-skills.service.category",
 
     function (skills, category) {
+
+        "use strict";
+
         var projects = this;
+
         projects.list = {
-            "azura-pps":{
+            "azura-pps": {
                 company: "azuragroup",
                 label: "Property Problems Solved",
                 issueManagement: "Spreadsheet",
@@ -15,19 +19,19 @@ angular.module('section-projects').service("section-projects.service.list", [
                     "javascript",
                     "css",
                     "svn",
-                    "mysql",
-                ],
+                    "mysql"
+                ]
             },
-            "azura-blue-box-voting":{
+            "azura-blue-box-voting": {
                 company: "azuragroup",
                 label: "Blue Box Voting",
                 issueManagement: "Email",
                 skillNames: [
                     "php5",
-                    "svn",
-                ],
+                    "svn"
+                ]
             },
-            "azura-professionals-world":{
+            "azura-professionals-world": {
                 company: "azuragroup",
                 label: "Professionals World",
                 issueManagement: "Word Document",
@@ -37,10 +41,10 @@ angular.module('section-projects').service("section-projects.service.list", [
                     "javascript",
                     "php5",
                     "svn",
-                    "mysql",
-                ],
+                    "mysql"
+                ]
             },
-            "aviva-rebrand":{
+            "aviva-rebrand": {
                 company: "aviva",
                 label: "Aviva Rebrand",
                 skillNames: [
@@ -49,50 +53,50 @@ angular.module('section-projects').service("section-projects.service.list", [
                     "css",
                     "javascript",
                     "jQuery",
-                    "svn",
-                ],
+                    "svn"
+                ]
             },
-            "unanimis-summarisation":{
+            "unanimis-summarisation": {
                 company: "unanimis",
                 label: "Summariser",
                 issueManagement: "Custom CRM",
                 skillNames: [
                     "php5",
                     "svn",
-                    "mysql",
-                ],
+                    "mysql"
+                ]
             },
-            "unanimis-downloader":{
+            "unanimis-downloader": {
                 company: "unanimis",
                 label: "Stats Downloader",
                 issueManagement: "Custom CRM",
                 skillNames: [
                     "php5",
                     "svn",
-                    "mysql",
-                ],
+                    "mysql"
+                ]
             },
-            "unanimis-iab":{
+            "unanimis-iab": {
                 company: "unanimis",
                 label: "IAB Cookie Standards",
                 skillNames: [
                     "php5",
                     "javascript",
                     "html",
-                    "svn",
-                ],
+                    "svn"
+                ]
             },
-            "unanimis-crm":{
+            "unanimis-crm": {
                 company: "unanimis",
                 label: "CRM",
                 issueManagement: "Custom CRM",
                 skillNames: [
                     "svn",
                     "php5",
-                    "mysql",
-                ],
+                    "mysql"
+                ]
             },
-            "gointeractive-workspace":{
+            "gointeractive-workspace": {
                 company: "gointeractive",
                 label: "Insurance Workspace",
                 skillNames: [
@@ -100,10 +104,10 @@ angular.module('section-projects').service("section-projects.service.list", [
                     "tfs",
                     "angularjs",
                     "jQuery",
-                    "bootstrap",
-                ],
+                    "bootstrap"
+                ]
             },
-            "gointeractive-charts":{
+            "gointeractive-charts": {
                 company: "gointeractive",
                 label: "Workspace Chart Dashboard",
                 skillNames: [
@@ -112,10 +116,10 @@ angular.module('section-projects').service("section-projects.service.list", [
                     "angularjs",
                     "chartjs",
                     "jQuery",
-                    "bootstrap",
-                ],
+                    "bootstrap"
+                ]
             },
-            "gointeractive-reports":{
+            "gointeractive-reports": {
                 company: "gointeractive",
                 label: "Sales Process Reporting Interface",
                 skillNames: [
@@ -125,10 +129,10 @@ angular.module('section-projects').service("section-projects.service.list", [
                     "zf2",
                     "jQuery",
                     "bootstrap",
-                    "mysql",
-                ],
+                    "mysql"
+                ]
             },
-            "personal-cv":{
+            "personal-cv": {
                 label: "CV",
                 skillNames: [
                     "git-subversion",
@@ -138,37 +142,36 @@ angular.module('section-projects').service("section-projects.service.list", [
                     "requirejs",
                     "bootstrap",
                     "grunt"
-                ],
+                ]
             },
-            "personal-smallcity":{
+            "personal-smallcity": {
                 label: "3D Cityscape",
                 skillNames: [
                     "threejs",
                     "backbone",
                     "requirejs",
-                    "jQuery",
-                ],
+                    "jQuery"
+                ]
             },
-            "personal-graphic-generator":{
+            "personal-graphic-generator": {
                 label: "Graphic Generator",
                 skillNames: [
                     "javascript",
                     "jQuery",
-                    "requirejs",
-                    //"canvas2image",
-                ],
+                    "requirejs"
+                ]
             },
-            "personal-quadrahedron":{
+            "personal-quadrahedron": {
                 label: "Quadrahedron",
                 skillNames: [
                     "angularjs",
                     "jQuery",
                     "requirejs",
                     "git-subversion",
-                    "git-issues",
-                ],
+                    "git-issues"
+                ]
             },
-            "fusepump-platform":{
+            "fusepump-platform": {
                 label: "Platform",
                 company: "fusepump",
                 skillNames: [
@@ -178,10 +181,10 @@ angular.module('section-projects').service("section-projects.service.list", [
                     "angularjs",
                     "jQuery",
                     "git",
-                    "jira",
-                ],
+                    "jira"
+                ]
             },
-            "fusepump-digital":{
+            "fusepump-digital": {
                 label: "Nestle Lightboxes",
                 company: "fusepump",
                 skillNames: [
@@ -191,11 +194,12 @@ angular.module('section-projects').service("section-projects.service.list", [
                     "angularjs",
                     "jQuery",
                     "git",
-                    "jira",
-                ],
-            },
+                    "jira"
+                ]
+            }
         };
-        angular.forEach(projects.list, function(project, projectName) {
+
+        angular.forEach(projects.list, function (project, projectName) {
             var categories = [ "ims", "srcControl" ],
                 categorySkills = { other: { label: "Other Skills", list: [ ] } };
 
@@ -206,7 +210,7 @@ angular.module('section-projects').service("section-projects.service.list", [
                 categorySkills[categoryName] = angular.extend(category.get(categoryName), { list: [ ] });
             });
 
-            angular.forEach(project.skillNames, function(skillName) {
+            angular.forEach(project.skillNames, function (skillName) {
                 var skill = skills.get(skillName),
                     categoryName = "other";
 
