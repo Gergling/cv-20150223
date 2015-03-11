@@ -13,7 +13,7 @@ angular.module('section-skills').service("section-skills.service.category", [
                 category.name = name;
                 category.label = label;
                 category.glyphicon = glyphicon || "cog";
-                category.hasLanguage = hasLanguage;
+                category.hasLanguage = hasLanguage || false;
                 return category;
             },
             categories = [

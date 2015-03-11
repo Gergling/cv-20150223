@@ -1,8 +1,9 @@
 angular.module('section-projects').service("section-projects.service.list", [
 
     "section-skills.service.list",
+    "section-skills.service.category",
 
-    function (skills) {
+    function (skills, category) {
         var projects = this;
         projects.list = {
             "azura-pps":{
@@ -201,27 +202,24 @@ angular.module('section-projects').service("section-projects.service.list", [
             project.name = projectName;
             project.descriptionPartial = "module/section-projects/partial/project-descriptions/" + project.name + ".html";
             project.skills = [ ];
-            /*categories.forEach(function (typeName) {
-                categorySkills[typeName] = { label: skills.types(typeName).label, list: [ ] };
-            });*/
+            categories.forEach(function (categoryName) {
+                categorySkills[categoryName] = angular.extend(category.get(categoryName), { list: [ ] });
+            });
 
             angular.forEach(project.skillNames, function(skillName) {
                 var skill = skills.get(skillName),
                     categoryName = "other";
 
+                // If the skill is registered, categorise it with those listed, or under 'other'.
                 if (skill) {
                     if (categories.indexOf(skill.category.name) > -1) {categoryName = skill.category.name; }
-
-                    if (!categorySkills[categoryName]) {
-                        categorySkills[categoryName] = angular.extend(skill.category, { list: [ ] });
-                    }
 
                     categorySkills[categoryName].list.push(skill);
                 }
             });
 
-            categories.concat([ "other" ]).forEach(function (category) {
-                project.skills.push(categorySkills[category]);
+            categories.concat([ "other" ]).forEach(function (cat) {
+                project.skills.push(categorySkills[cat]);
             });
         });
     }
