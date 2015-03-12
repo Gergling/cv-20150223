@@ -5,6 +5,7 @@ module.exports = function (grunt) {
     var banner = '/* Greg Davies CV */\n'
             + '/* <%= grunt.template.today("yyyy-mm-dd") %> */\n',
         paths = {
+            home: process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'],
             css: grunt.file.expand([
                 'src/public/vendor/bootstrap/dist/css/bootstrap.css',
                 'src/public/module/**/*.css'
@@ -28,7 +29,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: 'dist/',
                         src: ['**'],
-                        dest: 'C:/Users/G/Google Drive/Careers/CV/Public/Web Developer/20150223/dist'
+                        dest: paths.home + '/Google Drive/Careers/CV/Public/Web Developer/20150223/dist'
                     }
                 ]
             },
@@ -168,4 +169,7 @@ module.exports = function (grunt) {
         'cssmin',
         'template:dist'
     ]);
+
+    // Deploys dist code to Google Drive
+    grunt.registerTask('deploy', [ 'copy:deploy' ]);
 };
