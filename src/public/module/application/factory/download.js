@@ -1,17 +1,14 @@
 angular.module('application').factory("application.factory.download", [
 
-    "$rootScope",
-    "section-skills.factory.list",
-    "section-projects.factory.list",
     "section-jobs.factory.list",
 
-    function ($rootScope, skills, projects, jobs) {
+    function (jobs) {
 
         "use strict";
 
         var obj = {
             txt: "",
-            jobs: jobs,
+            jobs: jobs
         };
         return obj;
     }

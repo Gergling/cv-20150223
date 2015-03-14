@@ -2,9 +2,12 @@ angular.module('application').config([
 
     '$routeProvider',
 
-    function($routeProvider) {
-        $routeProvider.when('/', {});
-        $routeProvider.when('/:module/', {});
+    function ($routeProvider) {
+
+        "use strict";
+
+        $routeProvider.when('/', { });
+        $routeProvider.when('/:module/', { });
         $routeProvider.otherwise({templateUrl: 'module/application/partial/404.html'});
     }
 ]);

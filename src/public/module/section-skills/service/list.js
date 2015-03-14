@@ -7,16 +7,7 @@ angular.module('section-skills').service("section-skills.service.list", [
 
         "use strict";
 
-        var scope = this,
-            glyphiconMap = {
-                "issue-management": "road",
-                "subversion": "random",
-                "text-editor": "edit",
-                "language": "lamp",
-                "framework": "gift",
-                "tool": "wrench"
-            },
-            skills = [
+        var skills = [
                 sf.stack("mean", "MEAN Stack"),
 
                 sf.language("nodejs", "Node JS", { parent: "mean" }),
@@ -56,43 +47,11 @@ angular.module('section-skills').service("section-skills.service.list", [
                 sf.ims("github", "GIT Hub", { url: "https://github.com/Gergling" }),
                 sf.ims("lotus-notes", "Lotus Notes"),
                 sf.ims("jira", "JIRA")
-            ],
-            types = {
-                "ims": {label: "Issue Management"},
-                srcControl: {label: "Source Control"},
-                language: {label: "Language"},
-                tool: {label: "Tool"},
-                "text-editor": {label: "Text Editor"},
-                webserver: {label: "Web Server"},
-                os: {label: "Operating System"},
-                framework: {label: "Framework"}
-            };
+            ];
 
-        skills.forEach(function (skill) {
-            skill.typeIcon = "icon-cog";
-            skill.type = types[skill.typeName];
-            if (!skill.typeName) {throw "Skill '" + skill.name + "' not given a type."; }
-            if (glyphiconMap[skill.typeName]) {
-                skill.typeIcon = "glyphicon glyphicon-" + glyphiconMap[skill.typeName];
-            }
-        });
-
-        this.types = function (name) {
-            var ret;
-            if (name) {
-                ret = types[name];
-                if (!ret) {
-                    throw new Error("section-skills.service.list.types(): No type '" + name + "'.");
-                }
-            } else {
-                throw new Error("section-skills.service.list.types(): 1st argument omitted. Should be a string.");
-            }
-            return ret;
-        };
         this.get = function (name) {
             var ret = skills;
             if (name) {
-                // Todo: Make skills an array.
                 ret = $filter('filter')(skills, { name: name })[0];
             }
             return ret;

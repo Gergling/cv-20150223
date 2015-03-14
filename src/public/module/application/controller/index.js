@@ -1,14 +1,18 @@
 angular.module('application').controller("application.controller.index", [
 
     "$rootScope",
-    "$location",
-    "$route",
     "application.factory.navigation",
+    "$route", // Injection is required to start routing.
 
-    function($scope, $location, $routeConfig, navigation) {
+    function ($scope, navigation) {
+
+        "use strict";
+
         $scope.navigation = navigation;
-        $scope.$on('$routeChangeSuccess', function (scope, current, previous) {
+        /*jslint unparam: true*/
+        $scope.$on('$routeChangeSuccess', function (scope, current) {
             navigation.setActive(current.params.module);
         });
+        /*jslint unparam: false*/
     }
 ]);
