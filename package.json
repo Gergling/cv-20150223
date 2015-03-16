@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Gergling/cv-20150223",
   "dependencies": {
+    "deep-extend": "^0.3.2",
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
     "grunt-cli": "^0.1.13",
