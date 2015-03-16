@@ -30,7 +30,6 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jslint": "^1.1.12",
     "grunt-template": "^0.2.3",
-    "officegen": "git://github.com/protobi/officegen",
     "rtf": "0.0.4"
   }
 }
