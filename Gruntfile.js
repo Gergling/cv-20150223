@@ -156,9 +156,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-template');
 
-    grunt.registerTask('docgen', "Generate CV Document", function () {
-        require("./src/template/cv-doc")();
+    grunt.registerTask('rtfgen', "Generate CV RTF", function () {
+        require("./src/template/cv-rtf")(grunt);
     });
+
     // By default, generate dev template
     grunt.registerTask('default', [ 'template:dev' ]);
 
