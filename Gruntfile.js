@@ -16,7 +16,8 @@ module.exports = function (grunt) {
                 'src/public/vendor/angular-route/angular-route.js',
                 'src/public/vendor/bootstrap/dist/js/bootstrap.js',
                 'src/public/module/*/module.js',
-                'src/public/module/**/*.js'
+                'src/public/module/**/*.js',
+                'src/public/data/application.js'
             ])
         };
 
@@ -95,6 +96,20 @@ module.exports = function (grunt) {
             }
         },
         template: {
+            data: {
+                options: {
+                    data: {
+                        //prefix: 'src/public/',
+                        //paths: paths
+                        skills: require('./src/template/data/core').skills(),
+                        //projects: require('./src/template/data').projects(),
+                        //jobs: require('./src/template/data').jobs()
+                    }
+                },
+                files: {
+                    'src/public/data/application.js': ['src/template/data/application.js.tpl']
+                }
+            },
             dev: {
                 options: {
                     data: {
@@ -161,7 +176,7 @@ module.exports = function (grunt) {
     });
 
     // By default, generate dev template
-    grunt.registerTask('default', [ 'template:dev' ]);
+    grunt.registerTask('default', [ 'template:data', 'template:dev' ]);
 
     // Distribution code generation
     grunt.registerTask('dist', [
