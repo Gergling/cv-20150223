@@ -165,7 +165,7 @@ module.exports = function (grunt) {
 
     // Distribution code generation
     grunt.registerTask('dist', [
-        //'jslint',
+        'jslint',
         'copy:dist',
         'uglify',
         'ngtemplates:application',
