@@ -1,3 +1,5 @@
+// Todo: Adjust for backend.
+
 angular.module('section-skills').service("section-skills.service.skill", [
 
     "section-skills.service.category",

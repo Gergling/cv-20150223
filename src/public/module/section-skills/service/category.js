@@ -1,3 +1,5 @@
+// Todo: Adjust to handle back-end categories.
+
 angular.module('section-skills').service("section-skills.service.category", [
 
     "$filter",
