@@ -1,6 +1,7 @@
 module.exports = function (grunt) {
 
     var libPath = '../../node_modules/rtf/',
+        dist = "../../dist/",
         rtf = require('rtf'),
         Format = require(libPath + 'lib/format'),
         Colors = require(libPath + 'lib/colors'),
@@ -45,7 +46,7 @@ module.exports = function (grunt) {
     myDoc.writeText("Custom blue color", custom_blue);
 
     myDoc.createDocument(function(err, output){
-        grunt.file.write('formatting.rtf', output);
+        grunt.file.write(dist + 'cv.rtf', output);
     });
 
 };
