@@ -2,7 +2,8 @@ module.exports = (function () {
 
     "use strict";
 
-    var category = require("./category"),
+    var extend = require("deep-extend"),
+        category = require("./category"),
         factory = { },
 
         Skill = function () {
@@ -17,7 +18,7 @@ module.exports = (function () {
             skill.name = name;
             skill.label = label;
             skill.category = category.get(typeName);
-            return angular.extend(skill, presets, obj);
+            return extend(skill, presets, obj);
         };
 
     category.get().forEach(function (cat) {
