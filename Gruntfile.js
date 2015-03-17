@@ -66,13 +66,8 @@ module.exports = function (grunt) {
                 }
             },
             grunt: {
-                src: [ 'Gruntfile.js' ],
-                directives: {
-                    predef: [
-                        "module",
-                        "require"
-                    ]
-                }
+                src: [ 'Gruntfile.js', 'src/template/data/*.js', 'src/template/data/**/*.js' ],
+                directives: { node: true }
             }
         },
         ngtemplates: {
