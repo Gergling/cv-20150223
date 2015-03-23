@@ -97,7 +97,7 @@ module.exports = function (grunt) {
                         //prefix: 'src/public/',
                         //paths: paths
                         skills: require('./src/template/data/core').skills(),
-                        //projects: require('./src/template/data').projects(),
+                        projects: require('./src/template/data/core').projects(),
                         //jobs: require('./src/template/data').jobs()
                     }
                 },
