@@ -168,13 +168,19 @@ module.exports = (function () {
             // If the skill is registered, categorise it with those listed, or under 'other'.
             if (skill) {
                 if (categories.indexOf(skill.category.name) > -1) {categoryName = skill.category.name; }
+                //skill.category.list = [ ];
+                //console.log(skill);
+                //JSON.stringify(project);
 
                 categorySkills[categoryName].list.push(skill);
             }
         });
 
         categories.concat([ "other" ]).forEach(function (cat) {
-            project.skills.push(categorySkills[cat]);
+            categorySkills[cat].list.forEach(function (skill) {
+                skill.category = { };
+            });
+            project.skills.push(categorySkills[cat]);            
         });
     });
 
