@@ -6,13 +6,8 @@ module.exports = (function () {
         category = require("./category"),
         factory = { },
 
-        Skill = function () {
-            this.toggle = function () {
-                this.selected = !this.selected;
-            };
-        },
         create = function (name, label, typeName, obj, presets) {
-            var skill = new Skill();
+            var skill = { };
             presets = presets || { };
             obj = obj || { };
             skill.name = name;
