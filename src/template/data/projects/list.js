@@ -150,39 +150,5 @@ module.exports = (function () {
             ])
         ];
 
-    projects.forEach(function (project) {
-        var categories = [ "ims", "srcControl" ],
-            categorySkills = { other: { label: "Other Skills", list: [ ] } };
-
-        //project.name = projectName;
-        project.descriptionPartial = "module/section-projects/partial/project-descriptions/" + project.company + "-" + project.name + ".html";
-        project.skills = [ ];
-        categories.forEach(function (categoryName) {
-            categorySkills[categoryName] = extend(category.get(categoryName), { list: [ ] });
-        });
-
-        project.skillNames.forEach(function (skillName) {
-            var skill = skills.filter(function (s) {return s.name === skillName; })[0],
-                categoryName = "other";
-
-            // If the skill is registered, categorise it with those listed, or under 'other'.
-            if (skill) {
-                if (categories.indexOf(skill.category.name) > -1) {categoryName = skill.category.name; }
-                //skill.category.list = [ ];
-                //console.log(skill);
-                //JSON.stringify(project);
-
-                categorySkills[categoryName].list.push(skill);
-            }
-        });
-
-        categories.concat([ "other" ]).forEach(function (cat) {
-            categorySkills[cat].list.forEach(function (skill) {
-                skill.category = { };
-            });
-            project.skills.push(categorySkills[cat]);            
-        });
-    });
-
     return projects;
 }());
