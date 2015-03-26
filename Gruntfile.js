@@ -93,13 +93,20 @@ module.exports = function (grunt) {
         template: {
             data: {
                 options: {
-                    data: {
+                    data: (function (data) {
                         //prefix: 'src/public/',
                         //paths: paths
-                        skills: require('./src/template/data/core').skills(),
-                        projects: require('./src/template/data/core').projects(),
-                        //jobs: require('./src/template/data').jobs()
-                    }
+                        //skills: require('./src/template/data/core').skills(),
+                        //projects: require('./src/template/data/core').projects(),
+                        //jobs: require('./src/template/data/core').jobs()
+                        var core = require('./src/template/data/core');
+
+                        Object.keys(core).forEach(function (name) {
+                            data[name] = core[name]();
+                        });
+
+                        return data;
+                    }({ }))
                 },
                 files: {
                     'src/public/data/application.js': ['src/template/data/application.js.tpl']
