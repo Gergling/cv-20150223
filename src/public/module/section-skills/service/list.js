@@ -11,6 +11,12 @@ angular.module('section-skills').service("section-skills.service.list", [
 
         var skills = data.skills;
 
+        skills.forEach(function (skill) {
+            skill.toggle = function () {
+                skill.selected = !skill.selected;
+            };
+        });
+
         this.get = function (name) {
             var ret = skills;
             if (name) {
