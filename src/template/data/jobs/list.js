@@ -20,8 +20,8 @@ module.exports = (function () {
     ].forEach(function (data) {
         var job = { };
 
-        data.forEach(function (value, name) {
-            job[name] = value;
+        args.forEach(function (name, idx) {
+            job[name] = data[idx];
         });
 
         jobs.push(job);

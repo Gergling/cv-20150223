@@ -2,8 +2,7 @@
 	<div class="span12">
 		<p>This is my employment history in reverse chronological order, grouping projects by job.</p>
 		<ul class="job-listing">
-			<!--<li data-ng-repeat="item in jobs.order.date | orderBy:start">-->
-			<li data-ng-repeat="item in jobs.order.date">
+			<li data-ng-repeat="item in jobs | orderBy:'-start'">
 				<h4>{{item.label}} {{item.period}}</h4>
 				<div data-ng-include="item.descriptionPartial"></div>
 				<ul class="job-projects">

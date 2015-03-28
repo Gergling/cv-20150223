@@ -3,5 +3,5 @@
 angular.module('application').constant('application.constant.data', {
     skills: <%= skills %>,
     projects: <%= projects %>,
-    //jobs: 
+    jobs: <%= jobs %>
 });
