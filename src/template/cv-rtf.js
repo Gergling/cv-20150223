@@ -79,6 +79,32 @@ module.exports = function (grunt, dist, src) {
     myDoc.addLine();
     custom_blue.color = new RGB(3, 80, 150);
     myDoc.writeText("Custom blue color", custom_blue);
+    myDoc.addLine();
+
+    data.jobs.forEach(function (job) {
+        var projects = data.projects.filter(function (project) {return project.company === job.name; });
+
+        myDoc.writeText(job.label, custom_blue);
+        myDoc.addLine();
+        myDoc.writeText(getTemplateString(grunt.file.read(src + "public/module/section-jobs/partial/job-descriptions/" + job.name + ".html")), custom_blue);
+        myDoc.addLine();
+
+        // Include projects
+        projects.forEach(function (project) {
+            myDoc.writeText(project.label, custom_blue);
+            myDoc.addLine();
+            myDoc.writeText(getTemplateString(grunt.file.read(src + "public/module/section-projects/partial/project-descriptions/" + job.name + "-" + project.name + ".html")), custom_blue);
+            myDoc.addLine();
+            project.skillNames.forEach(function (skillName) {
+                data.skills.filter(function (skill) {
+                    if (skill.name === skillName) {
+                        myDoc.writeText(skill.label, custom_blue);
+                        myDoc.addLine();
+                    }
+                });
+            });
+        });
+    });
 
     myDoc.createDocument(function(err, output){
         grunt.file.write(dist + 'cv.rtf', output);
