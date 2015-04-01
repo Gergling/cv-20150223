@@ -1,12 +1,47 @@
-module.exports = function (grunt) {
+module.exports = function (grunt, dist, src) {
 
     var libPath = '../../node_modules/rtf/',
-        dist = "../../dist/",
+
+        htmlparser = require("htmlparser2");
         rtf = require('rtf'),
+
+        data = {
+            jobs: require('./data/jobs/list'),
+            projects: require('./data/projects/list'),
+            skills: require('./data/skills/list')
+        },
+
+        replace = function (str, mappings) {
+            mappings.forEach(function (mapping) {
+                str = str.split(mapping[0]).join(mapping[1]);
+            });
+            return str;
+        },
+        getTemplateString = function (html) {
+            var str = "",
+                parser = new htmlparser.Parser({
+                    ontext: function(text) {
+                        text = text.trim();
+                        str += " " + text;
+                    }
+                });
+
+            parser.write(html);
+            parser.end();
+
+            str = replace(str, [
+                [ "\t", " " ],
+                [ "\r", ""  ],
+                [ "\n", " " ],
+                [ " .", "." ]
+            ]);
+            str = str.replace(/\s{2,}/g, ' ');
+            return str.trim();
+        },
+
         Format = require(libPath + 'lib/format'),
         Colors = require(libPath + 'lib/colors'),
         RGB = require(libPath + 'lib/rgb'),
-        //fs  = require('fs'),
         myDoc = new rtf(),
         red_underline = new Format(),
         blue_strike = new Format(),

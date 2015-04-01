@@ -174,7 +174,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-template');
 
     grunt.registerTask('rtfgen', "Generate CV RTF", function () {
-        require("./src/template/cv-rtf")(grunt);
+        require("./src/template/cv-rtf")(grunt, 'dist/', 'src/');
     });
 
     // By default, generate dev template
