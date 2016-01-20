@@ -3,8 +3,6 @@ module.exports = (function () {
     "use strict";
 
     var extend = require("deep-extend"),
-        category = require("../skills/category"),
-        skills = require("../skills/list"),
         p = function (name, label, obj, skillNames) {
             return extend({
                 name: name,
@@ -49,7 +47,7 @@ module.exports = (function () {
                 "jQuery",
                 "svn"
             ]),
-            p("summarisation", "Summariser", { 
+            p("summarisation", "Summariser", {
                 company: "unanimis",
                 issueManagement: "Custom CRM"
             }, [
@@ -147,6 +145,24 @@ module.exports = (function () {
                 "jQuery",
                 "git",
                 "jira"
+            ]),
+            p("backstage", "Backstage", { company: "saffron" }, [
+                "jasmine",
+                "gulp",
+                "nodejs",
+                "angularjs",
+                "git",
+                "jira",
+                "python"
+            ]),
+            p("epay", "ePay", { company: "ifx" }, [
+                "jasmine",
+                "grunt",
+                "angularjs",
+                "git",
+                "nodejs",
+                "yodiz",
+                "github"
             ])
         ];
 

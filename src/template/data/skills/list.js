@@ -42,7 +42,8 @@ module.exports = (function () {
 
             sf.ims("github", "GIT Hub", { url: "https://github.com/Gergling" }),
             sf.ims("lotus-notes", "Lotus Notes"),
-            sf.ims("jira", "JIRA")
+            sf.ims("jira", "JIRA"),
+            sf.ims("yodiz", "Yodiz")
         ];
 
     return skills;
