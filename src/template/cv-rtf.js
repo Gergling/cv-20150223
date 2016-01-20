@@ -4,6 +4,7 @@ module.exports = function (grunt, dist, src) {
 
         htmlparser = require("htmlparser2");
         rtf = require('rtf'),
+        extend = require('deep-extend'),
 
         data = {
             jobs: require('./data/jobs/list'),
@@ -39,71 +40,73 @@ module.exports = function (grunt, dist, src) {
             return str.trim();
         },
 
+
+        format = function (opts, fnc) {
+            var F = require(libPath + 'lib/format'),
+                f = new F();
+
+            opts = extend({ size: 10, underline: false }, opts || { });
+
+            f.underline = opts.underline;
+            f.fontSize = opts.size;
+
+            if (opts.title) {f.bold = true; }
+
+            if (fnc) {fnc(f); }
+
+            return f;
+        },
+        fonts = {
+            paragraph: format(),
+            title: format({ title: true, size: 20, underline: true }),
+            jobTitle: format({ title: true, size: 18, underline: true }),
+            projectTitle: format({ title: true, size: 14 }),
+            skill: format()
+        },
+
         Format = require(libPath + 'lib/format'),
         Colors = require(libPath + 'lib/colors'),
         RGB = require(libPath + 'lib/rgb'),
-        myDoc = new rtf(),
-        red_underline = new Format(),
-        blue_strike = new Format(),
-        green_bold = new Format(),
-        maroon_super = new Format(),
-        gray_sub = new Format(),
-        lime_indent = new Format(),
-        custom_blue = new Format();
+        myDoc = new rtf();
 
-    red_underline.color = Colors.RED;
-    red_underline.underline = true;
-    red_underline.fontSize = 20;
-    myDoc.writeText("Red underlined", red_underline);
+    myDoc.writeText("Greg Davies CV", fonts.title);
     myDoc.addLine();
-    blue_strike.color = Colors.RED;
-    blue_strike.strike = true;
-    myDoc.writeText("Strikeout Blue", blue_strike);
+    myDoc.writeText("CV at http://goo.gl/QSZUPQ", fonts.paragraph);
     myDoc.addLine();
-    green_bold.color = Colors.GREEN;
-    green_bold.bold = true;
-    myDoc.writeText("Bold Green", green_bold);
-    myDoc.addLine();
-    maroon_super.color = Colors.MAROON;
-    maroon_super.superScript = true;
-    myDoc.writeText("Superscripted Maroon", maroon_super);
-    myDoc.addLine();
-    gray_sub.color = Colors.GRAY;
-    gray_sub.subScript = true;
-    myDoc.writeText("Subscripted Gray", gray_sub);
-    myDoc.addLine();
-    lime_indent.color = Colors.LIME;
-    lime_indent.backgroundColor = Colors.Gray;
-    lime_indent.leftIndent = 50;
-    myDoc.writeText("Left indented Lime", lime_indent);
-    myDoc.addLine();
-    custom_blue.color = new RGB(3, 80, 150);
-    myDoc.writeText("Custom blue color", custom_blue);
+    myDoc.writeText("Development and code for generating this document at https://github.com/Gergling/cv-20150223", fonts.paragraph);
     myDoc.addLine();
 
+    data.jobs.sort(function (a, b) {return b.period > a.period; });
     data.jobs.forEach(function (job) {
         var projects = data.projects.filter(function (project) {return project.company === job.name; });
 
-        myDoc.writeText(job.label, custom_blue);
+        myDoc.writeText(job.label, fonts.jobTitle);
         myDoc.addLine();
-        myDoc.writeText(getTemplateString(grunt.file.read(src + "public/module/section-jobs/partial/job-descriptions/" + job.name + ".html")), custom_blue);
+        myDoc.writeText("From " + job.period.replace("-", "to"), fonts.paragraph);
+        myDoc.addLine();
+        myDoc.writeText(getTemplateString(grunt.file.read(src + "public/module/section-jobs/partial/job-descriptions/" + job.name + ".html")), fonts.paragraph);
         myDoc.addLine();
 
         // Include projects
         projects.forEach(function (project) {
-            myDoc.writeText(project.label, custom_blue);
+            var skills = [ ];
+
+            myDoc.writeText(project.label, fonts.projectTitle);
             myDoc.addLine();
-            myDoc.writeText(getTemplateString(grunt.file.read(src + "public/module/section-projects/partial/project-descriptions/" + job.name + "-" + project.name + ".html")), custom_blue);
+            myDoc.writeText(getTemplateString(grunt.file.read(src + "public/module/section-projects/partial/project-descriptions/" + job.name + "-" + project.name + ".html")), fonts.paragraph);
+            myDoc.addLine();
             myDoc.addLine();
             project.skillNames.forEach(function (skillName) {
-                data.skills.filter(function (skill) {
-                    if (skill.name === skillName) {
-                        myDoc.writeText(skill.label, custom_blue);
-                        myDoc.addLine();
-                    }
+                var s = data.skills.filter(function (skill) {
+                    return skill.name === skillName;
                 });
+                if (s.length) {skills.push(s[0].label); }
             });
+
+            myDoc.writeText(skills.join(", "), fonts.paragraph);
+            myDoc.addLine();
         });
+        myDoc.addLine();
     });
 
     myDoc.createDocument(function(err, output){
