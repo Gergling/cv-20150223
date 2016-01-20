@@ -8,8 +8,6 @@ angular.module('section-jobs').service("section-jobs.service.list", [
 
         "use strict";
 
-        var scope = this;
-
         this.list = data.jobs;
 
         this.list.forEach(function (job) {

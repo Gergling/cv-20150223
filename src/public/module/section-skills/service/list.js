@@ -1,5 +1,3 @@
-// Todo: Adjust for backend.
-
 angular.module('section-skills').service("section-skills.service.list", [
 
     "$filter",
