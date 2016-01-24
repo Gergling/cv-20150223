@@ -16,7 +16,8 @@ module.exports = function (grunt) {
                 'src/public/vendor/angular-route/angular-route.js',
                 'src/public/vendor/bootstrap/dist/js/bootstrap.js',
                 'src/public/module/*/module.js',
-                'src/public/module/**/*.js'
+                'src/public/module/**/*.js',
+                'src/public/data/application.js'
             ])
         };
 
@@ -65,13 +66,8 @@ module.exports = function (grunt) {
                 }
             },
             grunt: {
-                src: [ 'Gruntfile.js' ],
-                directives: {
-                    predef: [
-                        "module",
-                        "require"
-                    ]
-                }
+                src: [ 'Gruntfile.js', 'src/template/data/*.js', 'src/template/data/**/*.js' ],
+                directives: { node: true }
             }
         },
         ngtemplates: {
@@ -95,6 +91,27 @@ module.exports = function (grunt) {
             }
         },
         template: {
+            data: {
+                options: {
+                    data: (function (data) {
+                        //prefix: 'src/public/',
+                        //paths: paths
+                        //skills: require('./src/template/data/core').skills(),
+                        //projects: require('./src/template/data/core').projects(),
+                        //jobs: require('./src/template/data/core').jobs()
+                        var core = require('./src/template/data/core');
+
+                        Object.keys(core).forEach(function (name) {
+                            data[name] = core[name]();
+                        });
+
+                        return data;
+                    }({ }))
+                },
+                files: {
+                    'src/public/data/application.js': ['src/template/data/application.js.tpl']
+                }
+            },
             dev: {
                 options: {
                     data: {
@@ -148,7 +165,6 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-angular-templates');
-    grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -157,12 +173,16 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-template');
 
+    grunt.registerTask('rtfgen', "Generate CV RTF", function () {
+        require("./src/template/cv-rtf")(grunt, 'dist/', 'src/');
+    });
+
     // By default, generate dev template
-    grunt.registerTask('default', [ 'template:dev' ]);
+    grunt.registerTask('default', [ 'template:data', 'template:dev' ]);
 
     // Distribution code generation
     grunt.registerTask('dist', [
-        //'jslint',
+        'jslint',
         'copy:dist',
         'uglify',
         'ngtemplates:application',

@@ -7,6 +7,6 @@ angular.module('section-jobs').controller("section-jobs.controller.index", [
 
         "use strict";
 
-        $scope.jobs = jobs;
+        $scope.jobs = jobs.list;
     }
 ]);
